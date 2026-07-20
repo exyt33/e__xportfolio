@@ -255,7 +255,6 @@
             opacity: 0.15;
         }
     </style>
-    
 </head>
 <body>
     <!-- Navbar -->
@@ -664,3 +663,134 @@ input:focus, textarea:focus {
         });
     </script>
 </body>
+    <!-- OPINIE KLIENTÓW -->
+    <section class="testimonials" id="opinie">
+        <h2 class="section-title">Co mówią o mnie <span style="color:#ff3366;">Klienci</span></h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 4rem; opacity: 0.8; font-size: 1.1rem;">
+            Oto co mają do powiedzenia moi zadowoleni klienci
+        </p>
+        
+        <div class="testimonials-grid">
+            
+            <!-- Karta 1 -->
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://via.placeholder.com/70/1a1a1a/ff3366?text=AV" alt="Avatar" class="testimonial-avatar">
+                    <div>
+                        <h3 class="client-name">Wpisz nazwę klienta <span class="verified">✔</span></h3>
+                        <p class="client-role">YOUTUBER</p>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <p class="testimonial-text">
+                    Tutaj wpisz opinię klienta...
+                </p>
+            </div>
+
+            <!-- Karta 2 -->
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://via.placeholder.com/70/1a1a1a/ff3366?text=AV" alt="Avatar" class="testimonial-avatar">
+                    <div>
+                        <h3 class="client-name">Wpisz nazwę klienta <span class="verified">✔</span></h3>
+                        <p class="client-role">YOUTUBER</p>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <p class="testimonial-text">
+                    Tutaj wpisz opinię klienta...
+                </p>
+            </div>
+
+            <!-- Karta 3 -->
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://via.placeholder.com/70/1a1a1a/ff3366?text=AV" alt="Avatar" class="testimonial-avatar">
+                    <div>
+                        <h3 class="client-name">Wpisz nazwę klienta <span class="verified">✔</span></h3>
+                        <p class="client-role">STREAMER</p>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <p class="testimonial-text">
+                    Tutaj wpisz opinię klienta...
+                </p>
+            </div>
+
+            <!-- Dodaj więcej kart w razie potrzeby -->
+        </div>
+    </section>
+    <style>/* OPINIE KLIENTÓW */
+.testimonials {
+    padding: 120px 5%;
+    background: #0f0a0a;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid rgba(255, 51, 102, 0.2);
+    border-radius: 20px;
+    padding: 28px;
+    transition: all 0.4s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-12px);
+    border-color: #ff3366;
+    box-shadow: 0 20px 40px rgba(255, 51, 102, 0.15);
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.testimonial-avatar {
+    width: 80px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ff3366;
+}
+
+.client-name {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.verified {
+    color: #00ff9d;
+    margin-left: 6px;
+}
+
+.client-role {
+    margin: 0;
+    color: #ff3366;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.stars {
+    margin-left: auto;
+    color: #ffd700;
+    font-size: 1.4rem;
+}
+
+.testimonial-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #ddd;
+    opacity: 0.95;
+}
