@@ -7,399 +7,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         :root {
-            --primary: #ff0000;
-            --bg: #0a0a0a;
-            --card: #121212;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: var(--bg);
-            color: #e0e0e0;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 255, 157, 0.2);
-        }
-        
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-            background: linear-gradient(90deg, #00ff9d, #00cc7a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
-        }
-        
-        .socials {
-            display: flex;
-            gap: 1.5rem;
-        }
-        
-        .socials a {
-            color: #e0e0e0;
-            font-size: 1.6rem;
-            transition: all 0.3s;
-        }
-        
-        .socials a:hover {
-            color: var(--primary);
-            transform: translateY(-4px) scale(1.1);
-            text-shadow: 0 0 15px var(--primary);
-        }
-
-        /* Clients - Okrągłe loga */
-        .clients {
-            padding: 100px 5%;
-            background: #111;
-        }
-        
-        .clients-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 3.5rem;
-            flex-wrap: wrap;
-            margin-top: 3rem;
-        }
-        
-        .client-logo {
-            width: 130px;
-            height: 130px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(109, 0, 0, 0.973);
-            border: 3px solid rgb(104, 2, 2);
-            border-radius: 50%;
-            transition: all 0.4s ease;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .client-logo:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 30px rgb(255, 0, 0);
-            transform: scale(1.12);
-        }
-        
-        .client-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            transition: all 0.4s ease;
-        }
-        
-        .client-logo:hover img {
-            transform: scale(1.08);
-        }
-
-        /* Hero */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(10,10,10,0.85), rgba(10,10,10,0.95)), url('https://images.unsplash.com/photo-1616588587682-4e4b4f4b4b?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero-content {
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-size: 5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, #00ff9d, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 14px 40px;
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.4s;
-        }
-        
-        .btn:hover {
-            background: var(--primary);
-            color: #000;
-            box-shadow: 0 0 30px rgba(0, 255, 157, 0.6);
-            transform: scale(1.05);
-        }
-        
-        /* Thumbnails */
-        .thumbnails {
-            padding: 120px 5% 100px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 4rem;
-            background: linear-gradient(90deg, #00ff9d, #00cc7a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        
-        .thumbnail-card {
-            background: var(--card);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s;
-            border: 1px solid rgba(0, 255, 157, 0.1);
-        }
-        
-        .thumbnail-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0, 255, 157, 0.15);
-            border-color: var(--primary);
-        }
-        
-        .thumbnail-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .thumbnail-card:hover img {
-            transform: scale(1.08);
-        }
-        
-        .thumbnail-info {
-            padding: 1.2rem;
-        }
-        
-        .thumbnail-info h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        /* Footer */
-        footer {
-            background: #0a0a0a;
-            padding: 4rem 5% 2rem;
-            border-top: 1px solid rgba(0, 255, 157, 0.2);
-        }
-        
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .neon-text {
-            text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
-        }
-        
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.15;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <header>
-        <nav>
-            <div class="logo">e__x</div>
-            <div class="socials">
-                <a href="https://youtube.com/@e__xyt33" target="_blank" title="YouTube"><i class="fab fa- "></i></a>
-                <a href="https://tiktok.com/@e__xyt" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="particles" id="particles"></div>
-        <div class="hero-content">
-            <h1>e__x</h1>
-            <p>Streamer • Grafik • Social Media Creator</p>
-            <a href="#thumbnails" class="btn">Zobacz moje miniaturki</a>
-        </div>
-    </section>
-
-   <section class="thumbnails" id="thumbnails">
-        <h2 class="section-title neon-text">MINIATURKI</h2>
-        <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem; opacity: 0.8;">
-            Tutaj są moje przykładowe miniaturki <strong>miniaturki</strong>.
-        </p>
-        
-        <div class="gallery" id="gallery">
-            <div class="thumbnail-card">
-                <img src="https://raw.githubusercontent.com/exyt33/e__xportfolio/91199e7dd950042ab68653f0f815e43791db8b7a/images/foto1.jpg" alt="Miniaturka 1">
-                <div class="thumbnail-info"><h3>Miniaturka</h3><p>dla SuperdedeTV • 17.07.2026</p></div>
-            </div>
-            <div class="thumbnail-card">
-                <img src="https://raw.githubusercontent.com/exyt33/e__xportfolio/8f12bc624f1517c3af451740fe19e0979c1da24e/images/foto2.png" alt="Miniaturka 2">
-                <div class="thumbnail-info"><h3>Miniaturka</h3><p>dla e__x • 01.07.2026</p></div>
-            </div>
-            <div class="thumbnail-card">
-                <img src="https://github.com/exyt33/e__xportfolio/blob/main/images/foto3.jpg?raw=true" alt="Miniaturka 3">
-                <div class="thumbnail-info"><h3>Miniaturka</h3><p>dla e__x • 08.07.2026</p></div>
-            </div>
-            <div class="thumbnail-card">
-                <img src="https://github.com/exyt33/e__xportfolio/blob/main/images/foto4.png?raw=true" alt="Miniaturka 4">
-                <div class="thumbnail-info"><h3>Miniaturka</h3><p>dla e__x • 15.07.2026</p></div>
-            </div>
-            <div class="thumbnail-card">
-                <img src="https://github.com/exyt33/e__xportfolio/blob/main/images/foto5.png?raw=true" alt="Miniaturka 5">
-                <div class="thumbnail-info"><h3>Miniaturka</h3><p>dla e__x • 14.07.2026</p></div>
-            </div>
-            <div class="thumbnail-card">
-                <img src="https://github.com/exyt33/e__xportfolio/blob/main/images/foto6.png?raw=true" alt="Miniaturka 6">
-                <div class="thumbnail-info"><h3>Miniaturka</h3><p>dla Blaxkfoam • 12.07.2026</p></div>
-            </div>
-
-            <style>
-                .hidden-thumbnail { display: none !important; }
-            </style>
-
-            <div class="thumbnail-card hidden-thumbnail">
-                <img src="https://github.com/exyt33/e__xportfolio/blob/main/images/LIVE%20PRZED%C5%81UZANY%201Z%C5%81-1MIN.jpg?raw=true" alt="Nowa Miniaturka 7">
-                <div class="thumbnail-info"><h3>Nowa Miniaturka</h3><p>dla SuperdedeTV • 18.07</p></div>
-            </div>
-            <div class="thumbnail-card hidden-thumbnail">
-                <img src="https://github.com/exyt33/e__xportfolio/blob/main/images/foto7.jpg?raw=true" alt="Nowa Miniaturka 8">
-                <div class="thumbnail-info"><h3>Nowa Miniaturka</h3><p>dla e__x • 19.07</p></div>
-            </div>
-            <div class="thumbnail-card hidden-thumbnail">
-                <img src="https://picsum.photos/id/30/600/340" alt="Nowa Miniaturka 9">
-                <div class="thumbnail-info"><h3>Nowa Miniaturka</h3><p>dla e__x • Nowe Zdjęcie 3</p></div>
-            </div>
-        </div>
-
-        <div id="btn-container" style="text-align: center; margin-top: 4rem;">
-            <button id="see-more-btn" class="btn" style="cursor: pointer; background: transparent;">Zobacz więcej</button>
-        </div>
-    </section>
-
-    <!-- O MNIE -->
-    <section style="padding: 100px 5%; background: #111; text-align: center;">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h2 class="section-title" style="font-size: 2.8rem;">O MNIE</h2>
-            <p style="font-size: 1.3rem; opacity: 0.9;">
-                Cześć! Jestem <strong>e__x</strong> — na codzień streamuje i robie grafiki z minecrafta.
-            </p>
-        </div>
-    </section>
-    
-
-    <!-- TU PRACOWAŁEM DLA -->
-    <section class="clients">
-        <h2 class="section-title neon-text">PRACOWAŁEM DLA</h2>
-        <div class="clients-grid">
-            <div class="client-card">
-    <div class="client-logo">
-        <img src="https://github.com/exyt33/e__xportfolio/blob/main/images/dede_profil.jpg" alt="Test">
-    </div>
-    <h3>SuperdedeTV</h3>
-    <p>37.6 tyś subskrybentów</p>
-</div>
-        <div class="client-card">
-    <div class="client-logo">
-        <img src="https://picsum.photos/130" alt="Test">
-    </div>
-    <h3>???</h3>
-    <p>???</p>
-</div>
-           <div class="client-card">
-    <div class="client-logo">
-        <img src="https://picsum.photos/130" alt="Test">
-    </div>
-    <h3>???</h3>
-    <p>To jest test - powinno się pokazać</p>
-</div>
-           <div class="client-card">
-    <div class="client-logo">
-        <img src="https://picsum.photos/130" alt="Test">
-    </div>
-    <h3>???</h3>
-    <p>???</p>
-</div>
-
-
-        </div>
-    </section>
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e__x | Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <style>
-        :root {
             --primary: #ff0033;
             --bg: #0a0a0a;
             --card: #121212;
         }
-        
+       
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+       
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
             background: var(--bg);
@@ -408,7 +26,33 @@
             overflow-x: hidden;
         }
 
-        /* Navbar */
+        /* DŁUŻSZE ANIMACJE */
+        @keyframes fadeUpLong {
+            from {
+                opacity: 0;
+                transform: translateY(80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeUpLong 1.4s ease forwards;
+        }
+
+        .hero-content {
+            animation: fadeUpLong 1.8s ease forwards;
+        }
+
+        .thumbnail-card, .testimonial-card {
+            opacity: 0;
+            animation: fadeUpLong 1.4s ease forwards;
+        }
+
+        /* Reszta stylów */
         header {
             position: fixed;
             top: 0;
@@ -419,7 +63,7 @@
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 0, 51, 0.2);
         }
-        
+       
         nav {
             max-width: 1400px;
             margin: 0 auto;
@@ -428,7 +72,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+       
         .logo {
             font-size: 2rem;
             font-weight: 900;
@@ -438,20 +82,24 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 20px rgba(255, 0, 51, 0.5);
         }
-        
+       
+        .socials {
+            display: flex;
+            gap: 1.5rem;
+        }
+       
         .socials a {
             color: #e0e0e0;
             font-size: 1.6rem;
             transition: all 0.3s;
         }
-        
+       
         .socials a:hover {
             color: var(--primary);
             transform: translateY(-4px) scale(1.1);
             text-shadow: 0 0 15px var(--primary);
         }
 
-        /* Hero */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(10,10,10,0.85), rgba(10,10,10,0.95)), url('https://images.unsplash.com/photo-1616588587682-4e4b4f4b4b?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover no-repeat;
@@ -461,7 +109,7 @@
             text-align: center;
             position: relative;
         }
-        
+       
         .hero h1 {
             font-size: 5rem;
             margin-bottom: 1rem;
@@ -482,7 +130,7 @@
             text-decoration: none;
             transition: all 0.4s;
         }
-        
+       
         .btn:hover {
             background: var(--primary);
             color: #000;
@@ -490,13 +138,10 @@
             transform: scale(1.05);
         }
 
-        /* Thumbnails */
-        .thumbnails {
-            padding: 120px 5% 100px;
-            max-width: 1400px;
-            margin: 0 auto;
+        .thumbnails, .about, .testimonials {
+            padding: 120px 5%;
         }
-        
+       
         .section-title {
             font-size: 3rem;
             text-align: center;
@@ -505,13 +150,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+       
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
-        
+       
         .thumbnail-card {
             background: var(--card);
             border-radius: 16px;
@@ -519,179 +164,118 @@
             transition: all 0.4s;
             border: 1px solid rgba(255, 0, 51, 0.1);
         }
-        
+       
         .thumbnail-card:hover {
             transform: translateY(-15px);
             box-shadow: 0 20px 40px rgba(255, 0, 51, 0.15);
             border-color: var(--primary);
         }
-
-        /* Contact Form */
-      .contact {
-    padding: 120px 5%;
-    background: linear-gradient(to bottom, #0a0a0a, #1a0000);
-}
-
-.contact-container {
-    max-width: 780px;
-    margin: 0 auto;
-    background: rgba(15, 15, 15, 0.75);     /* bardzo przezroczyste */
-    backdrop-filter: blur(12px);
-    border-radius: 28px;                    /* mocno zaokrąglone */
-    padding: 55px 60px;
-    border: 1px solid rgba(255, 30, 60, 0.15);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
-}
-
-.top-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 22px;
-    margin-bottom: 55px;
-    flex-wrap: wrap;
-}
-
-.top-btn {
-    background: rgba(30, 30, 30, 0.85);
-    border: 1px solid rgba(255, 50, 70, 0.3);
-    border-radius: 16px;
-    padding: 16px 26px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    color: #fff;
-    text-decoration: none;
-    width: 320px;
-    transition: 0.3s;
-}
-
-.top-btn:hover {
-    border-color: #ff0033;
-    background: rgba(40, 20, 20, 0.9);
-    transform: translateY(-5px);
-}
-
-.icon-box {
-    width: 54px;
-    height: 54px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-}
-
-.email-icon  { background: #ff0033; color: white; }
-.discord-icon { background: #5865F2; color: white; }
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-}
-
-.form-group label {
-    font-size: 12.5px;
-    letter-spacing: 1.8px;
-    color: #777;
-    margin-bottom: 9px;
-    display: block;
-}
-
-input, textarea {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #444;
-    color: #eee;
-    width: 100%;
-    padding: 9px 0 10px;
-    font-size: 16.5px;
-}
-
-input:focus, textarea:focus {
-    border-color: #ff3366;
-}
-
-.send-btn {
-    margin-top: 45px;
-    width: 100%;
-    background: transparent;
-    color: #ff0033;
-    border: none;
-    padding: 17px;
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.send-btn:hover {
-    color: #ff5555;
-    text-shadow: 0 0 20px #ff0033;
-}
-    </style>
-</head>
-<body>
-    <!-- Navbar i reszta Twojego kodu bez zmian... -->
-    <header>
-        <nav>
-            <div class="logo">e__x</div>
-            <div class="socials">
-                <a href="https://youtube.com/@e__xyt33" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://tiktok.com/@e__xyt" target="_blank"><i class="fab fa-tiktok"></i></a>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero, Thumbnails, O MNIE, Klienci - bez zmian (skróciłem dla czytelności) -->
-    <!-- ... Twój dotychczasowy kod hero, thumbnails, clients ... -->
-
        
-    <script>
-        document.getElementById('see-more-btn').addEventListener('click', function() {
-            // Znajdź wszystkie ukryte kafelki
-            const hiddenThumbnails = document.querySelectorAll('.hidden-thumbnail');
-            
-            // Usuń klasę ukrywającą ze wszystkich kafelków naraz
-            hiddenThumbnails.forEach(function(thumbnail) {
-                thumbnail.classList.remove('hidden-thumbnail');
-            });
-            
-            // Całkowicie usuń przycisk "SEE MORE PROJECTS", aby zniknął ze strony
-            document.getElementById('btn-container').remove();
-        });
-    </script>
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-left">
-                <div class="footer-logo">
-                    <span class="logo-text">e__x</span>
-                </div>
-            </div>
-            
-            <div class="footer-socials">
-                <a href="https://youtube.com/@e__xyt33" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://tiktok.com/@e__xyt" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                <a href="https://discord.com/users/e__x0" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-            </div>
-            
-            <div class="footer-right">
-                <p class="copyright">© 2026 e__x. Wszelkie prawa zastrzeżone.</p>
-            </div>
-        </div>
-    </footer>
+        .thumbnail-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+       
+        .thumbnail-card:hover img {
+            transform: scale(1.08);
+        }
+       
+        .thumbnail-info {
+            padding: 1.2rem;
+        }
+       
+        .thumbnail-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
 
-    <style>
+        .about {
+            background: #111;
+            text-align: center;
+        }
+
+        .testimonials {
+            background: #0f0a0a;
+        }
+       
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+       
+        .testimonial-card {
+            background: rgba(20, 20, 20, 0.85);
+            border: 1px solid rgba(255, 51, 102, 0.2);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.4s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+       
+        .testimonial-card:hover {
+            transform: translateY(-12px);
+            border-color: #ff3366;
+            box-shadow: 0 20px 40px rgba(255, 51, 102, 0.15);
+        }
+       
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+       
+        .testimonial-avatar {
+            width: 80px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff3366;
+        }
+       
+        .client-name {
+            margin: 0;
+            font-size: 1.25rem;
+            color: #fff;
+        }
+       
+        .verified {
+            color: #00ff9d;
+            margin-left: 6px;
+        }
+       
+        .client-role {
+            margin: 0;
+            color: #ff3366;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+       
+        .stars {
+            margin-left: auto;
+            color: #ffd700;
+            font-size: 1.4rem;
+        }
+       
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #ddd;
+            opacity: 0.95;
+        }
+
         footer {
             background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(12px);
             border-top: 1px solid rgba(255, 0, 51, 0.25);
             padding: 50px 5% 35px;
-            margin-top: 80px;
         }
-        
+       
         .footer-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -701,7 +285,7 @@ input:focus, textarea:focus {
             flex-wrap: wrap;
             gap: 20px;
         }
-        
+       
         .footer-logo .logo-text {
             font-size: 2.1rem;
             font-weight: 900;
@@ -709,52 +293,106 @@ input:focus, textarea:focus {
             background: linear-gradient(90deg, #ff0033, #ff6688);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 0, 51, 0.6);
         }
-        
-        .footer-socials {
-            display: flex;
-            gap: 28px;
-        }
-        
+       
         .footer-socials a {
             color: #ddd;
             font-size: 1.8rem;
             transition: all 0.3s ease;
         }
-        
+       
         .footer-socials a:hover {
             color: #ff0033;
             transform: translateY(-6px) scale(1.15);
-            text-shadow: 0 0 15px #ff0033;
         }
-        
-        .copyright {
-            color: #777;
-            font-size: 0.95rem;
-            margin: 0;
-        }
-        
-        /* Responsywność */
-        @media (max-width: 768px) {
-            .footer-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 25px;
-            }
-        }
+
+        .hidden-thumbnail { display: none !important; }
+        .neon-text { text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary); }
     </style>
-</body>
-    <!-- OPINIE KLIENTÓW -->
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <div class="logo">e__x</div>
+            <div class="socials">
+                <a href="https://discord.com/users/e__x0" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="https://youtube.com/@e__xyt33" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://tiktok.com/@e__xyt" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>e__x</h1>
+            <p>Streamer • Grafik • Social Media Creator</p>
+            <a href="#thumbnails" class="btn">Zobacz moje miniaturki</a>
+        </div>
+    </section>
+
+    <!-- Thumbnails -->
+    <section class="thumbnails" id="thumbnails">
+        <h2 class="section-title neon-text animate-on-scroll">MINIATURKI</h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem; opacity: 0.8;" class="animate-on-scroll">
+            Tutaj są moje przykładowe miniaturki.
+        </p>
+       
+        <div class="gallery" id="gallery">
+            <div class="thumbnail-card"><img src="https://raw.githubusercontent.com/exyt33/e__xportfolio/91199e7dd950042ab68653f0f815e43791db8b7a/images/foto1.jpg" alt="Miniaturka 1">
+                <div class="thumbnail-info"><h3>Miniaturka</h3><p>dla SuperdedeTV • 17.07.2026</p></div>
+            </div>
+            <div class="thumbnail-card"><img src="https://raw.githubusercontent.com/exyt33/e__xportfolio/8f12bc624f1517c3af451740fe19e0979c1da24e/images/foto2.png" alt="Miniaturka 2">
+                <div class="thumbnail-info"><h3>Miniaturka</h3><p>dla e__x • 01.07.2026</p></div>
+            </div>
+            <div class="thumbnail-card"><img src="https://github.com/exyt33/e__xportfolio/blob/main/images/foto3.jpg?raw=true" alt="Miniaturka 3">
+                <div class="thumbnail-info"><h3>Miniaturka</h3><p>dla e__x • 08.07.2026</p></div>
+            </div>
+            <div class="thumbnail-card"><img src="https://github.com/exyt33/e__xportfolio/blob/main/images/foto4.png?raw=true" alt="Miniaturka 4">
+                <div class="thumbnail-info"><h3>Miniaturka</h3><p>dla e__x • 15.07.2026</p></div>
+            </div>
+            <div class="thumbnail-card"><img src="https://github.com/exyt33/e__xportfolio/blob/main/images/foto5.png?raw=true" alt="Miniaturka 5">
+                <div class="thumbnail-info"><h3>Miniaturka</h3><p>dla e__x • 14.07.2026</p></div>
+            </div>
+            <div class="thumbnail-card"><img src="https://github.com/exyt33/e__xportfolio/blob/main/images/foto6.png?raw=true" alt="Miniaturka 6">
+                <div class="thumbnail-info"><h3>Miniaturka</h3><p>dla Blaxkfoam • 12.07.2026</p></div>
+            </div>
+
+            <div class="thumbnail-card hidden-thumbnail"><img src="https://github.com/exyt33/e__xportfolio/blob/main/images/LIVE%20PRZED%C5%81UZANY%201Z%C5%81-1MIN.jpg?raw=true" alt="Nowa">
+                <div class="thumbnail-info"><h3>Nowa Miniaturka</h3><p>dla SuperdedeTV • 18.07</p></div>
+            </div>
+            <div class="thumbnail-card hidden-thumbnail"><img src="https://github.com/exyt33/e__xportfolio/blob/main/images/foto7.jpg?raw=true" alt="Nowa">
+                <div class="thumbnail-info"><h3>Nowa Miniaturka</h3><p>dla e__x • 19.07</p></div>
+            </div>
+            <div class="thumbnail-card hidden-thumbnail"><img src="https://picsum.photos/id/30/600/340" alt="Nowa">
+                <div class="thumbnail-info"><h3>Nowa Miniaturka</h3><p>dla e__x</p></div>
+            </div>
+        </div>
+
+        <div id="btn-container" style="text-align: center; margin-top: 4rem;">
+            <button id="see-more-btn" class="btn">Zobacz więcej</button>
+        </div>
+    </section>
+
+    <!-- O MNIE -->
+    <section class="about">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 class="section-title animate-on-scroll" style="font-size: 2.8rem;">O MNIE</h2>
+            <p style="font-size: 1.3rem; opacity: 0.9;" class="animate-on-scroll">
+                Cześć! Jestem <strong>e__x</strong> — na co dzień streamuję i robię grafiki z Minecrafta.
+            </p>
+        </div>
+    </section>
+
+    <!-- Opinie -->
     <section class="testimonials" id="opinie">
-        <h2 class="section-title">Co mówią o mnie <span style="color:#ff3366;">Klienci</span></h2>
-        <p style="text-align: center; max-width: 700px; margin: 0 auto 4rem; opacity: 0.8; font-size: 1.1rem;">
+        <h2 class="section-title animate-on-scroll">Co mówią o mnie <span style="color:#ff3366;">Klienci</span></h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 4rem; opacity: 0.8; font-size: 1.1rem;" class="animate-on-scroll">
             Oto co mają do powiedzenia moi zadowoleni klienci
         </p>
-        
+       
         <div class="testimonials-grid">
-            
-            <!-- Karta 1 -->
             <div class="testimonial-card">
                 <div class="testimonial-header">
                     <img src="https://via.placeholder.com/70/1a1a1a/ff3366?text=AV" alt="Avatar" class="testimonial-avatar">
@@ -764,12 +402,8 @@ input:focus, textarea:focus {
                     </div>
                     <div class="stars">★★★★★</div>
                 </div>
-                <p class="testimonial-text">
-                    Tutaj wpisz opinię klienta...
-                </p>
+                <p class="testimonial-text">Tutaj wpisz opinię klienta...</p>
             </div>
-
-            <!-- Karta 2 -->
             <div class="testimonial-card">
                 <div class="testimonial-header">
                     <img src="https://via.placeholder.com/70/1a1a1a/ff3366?text=AV" alt="Avatar" class="testimonial-avatar">
@@ -779,12 +413,8 @@ input:focus, textarea:focus {
                     </div>
                     <div class="stars">★★★★★</div>
                 </div>
-                <p class="testimonial-text">
-                    Tutaj wpisz opinię klienta...
-                </p>
+                <p class="testimonial-text">Tutaj wpisz opinię klienta...</p>
             </div>
-
-            <!-- Karta 3 -->
             <div class="testimonial-card">
                 <div class="testimonial-header">
                     <img src="https://via.placeholder.com/70/1a1a1a/ff3366?text=AV" alt="Avatar" class="testimonial-avatar">
@@ -794,168 +424,49 @@ input:focus, textarea:focus {
                     </div>
                     <div class="stars">★★★★★</div>
                 </div>
-                <p class="testimonial-text">
-                    Tutaj wpisz opinię klienta...
-                </p>
+                <p class="testimonial-text">Tutaj wpisz opinię klienta...</p>
             </div>
-
-            <!-- Dodaj więcej kart w razie potrzeby -->
         </div>
     </section>
-    <style>/* OPINIE KLIENTÓW */
-.testimonials {
-    padding: 120px 5%;
-    background: #0f0a0a;
-}
 
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.testimonial-card {
-    background: rgba(20, 20, 20, 0.85);
-    border: 1px solid rgba(255, 51, 102, 0.2);
-    border-radius: 20px;
-    padding: 28px;
-    transition: all 0.4s;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.testimonial-card:hover {
-    transform: translateY(-12px);
-    border-color: #ff3366;
-    box-shadow: 0 20px 40px rgba(255, 51, 102, 0.15);
-}
-
-.testimonial-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 18px;
-}
-
-.testimonial-avatar {
-    width: 80px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ff3366;
-}
-
-.client-name {
-    margin: 0;
-    font-size: 1.25rem;
-    color: #fff;
-}
-
-.verified {
-    color: #00ff9d;
-    margin-left: 6px;
-}
-
-.client-role {
-    margin: 0;
-    color: #ff3366;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.stars {
-    margin-left: auto;
-    color: #ffd700;
-    font-size: 1.4rem;
-}
-
-.testimonial-text {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #ddd;
-    opacity: 0.95;
-}
-<!-- FOOTER -->
+    <!-- Footer -->
     <footer>
         <div class="footer-container">
-            <div class="footer-left">
-                <div class="footer-logo">
-                    <span class="logo-text">e__x</span>
-                </div>
+            <div class="footer-logo">
+                <span class="logo-text">e__x</span>
             </div>
-            
             <div class="footer-socials">
-                <a href="https://youtube.com/@e__xyt33" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://tiktok.com/@e__xyt" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                <a href="https://discord.com/users/e__x0" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="https://discord.com/users/e__x0" target="_blank"><i class="fab fa-discord"></i></a>
+                <a href="https://youtube.com/@e__xyt33" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://tiktok.com/@e__xyt" target="_blank"><i class="fab fa-tiktok"></i></a>
             </div>
-            
-            <div class="footer-right">
-                <p class="copyright">© 2026 e__x. Wszelkie prawa zastrzeżone.</p>
-            </div>
+            <p class="copyright">© 2026 e__x. Wszelkie prawa zastrzeżone.</p>
         </div>
     </footer>
 
-    <style>
-        footer {
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(255, 0, 51, 0.25);
-            padding: 50px 5% 35px;
-            margin-top: 80px;
-        }
-        
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .footer-logo .logo-text {
-            font-size: 2.1rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-            background: linear-gradient(90deg, #ff0033, #ff6688);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 0, 51, 0.6);
-        }
-        
-        .footer-socials {
-            display: flex;
-            gap: 28px;
-        }
-        
-        .footer-socials a {
-            color: #ddd;
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-socials a:hover {
-            color: #ff0033;
-            transform: translateY(-6px) scale(1.15);
-            text-shadow: 0 0 15px #ff0033;
-        }
-        
-        .copyright {
-            color: #777;
-            font-size: 0.95rem;
-            margin: 0;
-        }
-        
-        /* Responsywność */
-        @media (max-width: 768px) {
-            .footer-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 25px;
-            }
-        }
-    </style>
-    
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = (index * 0.15) + 's';
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.animate-on-scroll, .thumbnail-card, .testimonial-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Przycisk zobacz więcej
+        document.getElementById('see-more-btn').addEventListener('click', function() {
+            const hidden = document.querySelectorAll('.hidden-thumbnail');
+            hidden.forEach((el, i) => {
+                el.classList.remove('hidden-thumbnail');
+                el.style.animationDelay = (i * 0.2) + 's';
+            });
+            this.parentElement.remove();
+        });
+    </script>
+</body>
+</html>
